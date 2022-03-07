@@ -1,0 +1,116 @@
+:root {
+  --font-display: 'Sedgwick Ave Display';
+  --font-sans-serif: 'Lato';
+  --box-shadow: 0px 21px 32px 0px rgba(8, 40, 34, 0.89);
+  background: rgb(162,222,223);
+background: linear-gradient(0deg, rgba(162,222,223,1) 46%, rgba(242,236,223,1) 85%);
+  
+  --grad-bright: black;
+  
+  --fig-width: 300px;
+  --fig-height: 155px;
+  --delay-base: 400ms;
+  --delay-added: 100ms;
+  --acc-back: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+*,
+*:before,
+*:after{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+
+body{
+  width: 100vw; height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+img{
+  width: 100%;
+  height: auto;
+  border-radius: 2px 34px;
+ 
+  animation: popInImg 700ms var(--acc-back) 1 forwards;
+  animation-delay: var(--delay-base);
+  opacity: 0;
+  transform: skewY(1deg);
+}
+
+figure{
+  position: relative;
+  width: var(--fig-width);
+  height: var(--fig-height);
+  transition: transform 600ms var(--acc-back);
+}
+
+figure:hover{
+  transform: scale(1.05) skewY(-1deg);
+}
+
+figcaption{
+  transition: transform 600ms var(--acc-back), opacity 100ms ease-in;
+  height: inherit;
+  position: absolute;
+  top: 0; left; 0;
+  width: 100%; 
+  height: 100%;
+}
+
+figure:hover figcaption{
+  opacity: 0;
+  transform: scale(.91);
+}
+
+@keyframes popInImg{
+  0%{
+    transform: skewY(5deg) scaleX(.89) scaleY(.89);
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;    
+  }
+}
+
+figcaption span{
+  position: absolute;
+  display: block;
+  background: var(--grad-bright);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-sans-serif);
+  transform: skewY(-13deg);
+  text-shadow: var(--box-shadow);
+  animation: popIn 600ms var(--acc-back) 1 forwards;
+  opacity: 0;
+}
+
+@keyframes popIn{
+  0%,13%{
+    transform: scaleX(.89) scaleY(.75);
+    opacity: 0;
+  }
+  100%{
+    transform: skewY(-13deg);
+    opacity: 1;    
+  }
+}
+
+figcaption span:nth-of-type(1){
+  top: -44px; left: 44px;
+  font-size: 21px;
+  animation-delay: calc(var(--delay-base) + 1 * var(--delay-added));
+}
+
+figcaption span:nth-of-type(2){
+  top: -34px; left: -21px;
+  font-size: 70px;
+  font-family: var(--font-display);
+  animation-delay: calc(var(--delay-base) 
+
